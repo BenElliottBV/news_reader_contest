@@ -1,20 +1,22 @@
 var Observable = require("data/observable");
 var feed = require("./feed-parser");
 var observableArray = require("data/observable-array");
+var frameModule = require("ui/frame");
 
-var MainViewModel = (function(_super){
-  __extends(MainViewModel,_super);
-  function MainViewModel(){
-	  var _this = this;
+var MainViewModel = (function(_super) {
+  __extends(MainViewModel, _super);
+
+  function MainViewModel() {
+    var _this = this;
     _super.call(this);
-	feed.parser.profile().then(function(){
-		_this.getCategories();
-		_this.getEntries();
-	});
-    
+    feed.parser.profile().then(function() {
+      // _this.getCategories();
+      _this.getEntries();
+    });
+
   }
 
-  Object.defineProperty(MainViewModel.prototype,"categories",{
+  Object.defineProperty(MainViewModel.prototype, "categories", {
     get: function() {
       return this._categories;
     },
@@ -28,7 +30,7 @@ var MainViewModel = (function(_super){
     configurable: true
   })
 
-  Object.defineProperty(MainViewModel.prototype,"entries",{
+  Object.defineProperty(MainViewModel.prototype, "entries", {
     get: function() {
       return this._entries;
     },
@@ -42,31 +44,38 @@ var MainViewModel = (function(_super){
     configurable: true
   })
 
-  MainViewModel.prototype.getCategories = function () {
+  MainViewModel.prototype.getCategories = function() {
     var _this = this;
-    feed.parser.categories().then(function(categories){
+    feed.parser.categories().then(function(categories) {
       console.log("setting Categories")
 
       var cats = new observableArray.ObservableArray();
-      categories.forEach(function(c){
+      categories.forEach(function(c) {
         cats.push(c);
       })
       _this.categories = cats;
     })
   };
 
-  MainViewModel.prototype.getEntries = function () {
+  MainViewModel.prototype.getEntries = function() {
     var _this = this;
-    feed.parser.allEntries().then(function(entries){
+    feed.parser.allEntries().then(function(entries) {
       console.log("setting Entries")
 
       var ent = new observableArray.ObservableArray();
-      entries.items.forEach(function(e){
-        console.log(e);
+      entries.items.forEach(function(e) {
         ent.push(e);
       })
       _this.entries = ent;
     })
+  };
+
+  MainViewModel.prototype.readArticle = function (args) {
+    // console.log(args);
+    var context = this.entries[args.index];
+    console.log(context);
+    var topmost = frameModule.topmost();
+    topmost.navigate("article/article");
   };
 
   return MainViewModel;

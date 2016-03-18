@@ -58,7 +58,7 @@ var HttpService = (function() {
   };
 
   HttpService.prototype.urlBuilder = function(url) {
-    var mainUrl = "http://cloud.feedly.com/v3/";
+    var mainUrl = "https://cloud.feedly.com/v3/";
     console.log("Url: " + mainUrl + url);
     return mainUrl + url;
   };

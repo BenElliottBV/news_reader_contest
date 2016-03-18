@@ -19,7 +19,7 @@ var Parser = (function() {
 
   Parser.prototype.allEntries = function(){
     var userid = appSettings.getString("userid");
-    var allEntries = feedly.get("streams/user%2F" + userid + "%2Fcategory%2Fglobal.all/contents").then(function(e){
+    var allEntries = feedly.get("streams/contents?streamId=user%2F" + userid + "%2Fcategory%2Fglobal.all&unreadOnly=true").then(function(e){
       console.log(JSON.stringify(e));
       return e;
     });

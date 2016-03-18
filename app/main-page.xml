@@ -1,28 +1,18 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" xmlns:drawer="nativescript-telerik-ui/sidedrawer">
-  <drawer:RadSideDrawer>
-      <drawer:RadSideDrawer.mainContent>
-        <StackLayout>
-          <ListView items="{{entries}}">
-            <ListView.itemTemplate>
-              <Label text="{{title}}" textWrap="true" />
-            </ListView.itemTemplate>
-          </ListView>
-        </StackLayout>
-      </drawer:RadSideDrawer.mainContent>
-      <drawer:RadSideDrawer.drawerContent>
-        <StackLayout cssClass="drawerContent">
-          <StackLayout cssClass="headerContent">
-            <Label text="Categories"/>
-          </StackLayout>
-          <ListView items="{{categories}}">
-            <ListView.itemTemplate>
-              <Label text="{{label}}" />
-            </ListView.itemTemplate>
-          </ListView>
-        </StackLayout>
-      </drawer:RadSideDrawer.drawerContent>
-    </drawer:RadSideDrawer>
-
-
+<Page navigatingTo="onNavigatingTo" xmlns:drawer="nativescript-telerik-ui/sidedrawer" xmlns="http://schemas.nativescript.org/tns.xsd">
+  <ActionBar style="background-color:#3F51B5;color:white" title="Unread Items">
+    <ActionItem ios.position="right" text="Refresh" style="color:white" tap="{{getEntries}}"/>
+  </ActionBar>
+  <StackLayout>
+    <ListView items="{{entries}}" itemTap="{{readArticle}}">
+      <ListView.itemTemplate>
+        <GridLayout columns="*,*" rows="auto,200,auto">
+          <Label col="0" row="0" style="margin: 5 0 5 5;color:#7986CB;font-weight:bold" text="{{origin.title}}"/>
+          <Label col="1" horizontalAlignment="right" row="0" style="margin: 5 5 5 0" text="{{published, published | formatDate }}"/>
+          <Image col="0" colspan="2" row="1" src="{{visual.url}}" stretch="aspectFill"/>
+          <Label col="0" colspan="2" row="2" style="font-weight:bold;margin: 5 5 5 5" text="{{title}}" textWrap="true"/>
+        </GridLayout>
+      </ListView.itemTemplate>
+    </ListView>
+  </StackLayout>
 
 </Page>
