@@ -5,9 +5,13 @@ var observableArray = require("data/observable-array");
 var MainViewModel = (function(_super){
   __extends(MainViewModel,_super);
   function MainViewModel(){
+	  var _this = this;
     _super.call(this);
-    this.getCategories();
-    this.getEntries();
+	feed.parser.profile().then(function(){
+		_this.getCategories();
+		_this.getEntries();
+	});
+    
   }
 
   Object.defineProperty(MainViewModel.prototype,"categories",{

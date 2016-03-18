@@ -5,14 +5,16 @@ var feedly = new httpService.HttpService();
 var Parser = (function() {
   function Parser() {
     // this.categories();
-    this.profile();
+    //this.profile();
   }
 
   Parser.prototype.profile = function() {
     var profile = feedly.get("profile").then(function(profile) {
       appSettings.setString("userid", profile.id);
       console.log("userid", profile.id);
+	  return profile;
     });
+	return profile;
   }
 
   Parser.prototype.allEntries = function(){
