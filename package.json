@@ -1,9 +1,6 @@
 {
 	"nativescript": {
-		"id": "org.nativescript.newsreadercontest",
-		"tns-android": {
-			"version": "1.7.0"
-		}
+		"id": "org.nativescript.newsreadercontest"
 	},
 	"dependencies": {
 		"nativescript-telerik-ui": "^0.2.4",
