@@ -2,6 +2,7 @@ var Observable = require("data/observable");
 var feed = require("./feed-parser");
 var observableArray = require("data/observable-array");
 var frameModule = require("ui/frame");
+var articleViewModelModule = require("./article/article-view-model");
 
 var MainViewModel = (function(_super) {
   __extends(MainViewModel, _super);
@@ -64,18 +65,16 @@ var MainViewModel = (function(_super) {
 
       var ent = new observableArray.ObservableArray();
       entries.items.forEach(function(e) {
-        ent.push(e);
+        ent.push(new articleViewModelModule.ArticleViewModel(e));
       })
       _this.entries = ent;
     })
   };
 
   MainViewModel.prototype.readArticle = function (args) {
-    // console.log(args);
-    var context = this.entries[args.index];
-    console.log(context);
+    var context = this.entries.getItem(args.index);
     var topmost = frameModule.topmost();
-    topmost.navigate("article/article");
+    topmost.navigate({moduleName:"article/article", context:context});
   };
 
   return MainViewModel;

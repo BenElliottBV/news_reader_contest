@@ -1,7 +1,19 @@
 var MainViewModel = require("./main-view-model");
+var page;
 
 function onNavigatingTo(args) {
-    var page = args.object;
-    page.bindingContext = new MainViewModel.MainViewModel();
+  console.log("navigatingTo");
+  page = args.object;
+}
+
+function loaded(args){
+  console.log("loaded")
+  reload();
+}
+
+function reload() {
+  page.bindingContext = new MainViewModel.MainViewModel();
 }
 exports.onNavigatingTo = onNavigatingTo;
+exports.loaded = loaded;
+exports.reload = reload;

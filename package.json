@@ -1,11 +1,11 @@
 {
 	"nativescript": {
 		"id": "org.nativescript.newsreadercontest",
-		"tns-android": {
-			"version": "1.7.0"
-		},
 		"tns-ios": {
 			"version": "1.7.0"
+		},
+		"tns-android": {
+			"version": "2.0.0-2016-03-18-282"
 		}
 	},
 	"dependencies": {
