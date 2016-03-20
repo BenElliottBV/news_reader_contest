@@ -71,10 +71,14 @@ var MainViewModel = (function(_super) {
     })
   };
 
-  MainViewModel.prototype.readArticle = function (args) {
-    var context = this.entries.getItem(args.index);
+  MainViewModel.prototype.readArticle = function(args) {
+    var context = {articleList: this, selectedIndex:args.index }; //this.entries.getItem(args.index)
     var topmost = frameModule.topmost();
-    topmost.navigate({moduleName:"article/article", context:context});
+    topmost.navigate({
+      moduleName: "article/article",
+      context: context,
+      backstackVisible: false
+    });
   };
 
   return MainViewModel;

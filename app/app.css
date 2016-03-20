@@ -1,3 +1,6 @@
+Page {
+  font-family: 'Questrial-Regular', sans-serif;
+}
 ﻿.title {
     font-size: 30;
     horizontal-align: center;
@@ -22,4 +25,8 @@ button {
 
 .drawerContent {
     background-color: white;
+}
+
+.material-icon {
+  font-family: 'Material-Design-Iconic-Font';
 }

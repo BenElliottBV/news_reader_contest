@@ -3,14 +3,19 @@
   <GridLayout rows="*,auto">
     <ScrollView>
       <StackLayout row="0">
-        <Label style="font-weight:bold;margin: 5 5 5 5" text="{{article.title}}" textWrap="true"/>
-        <Image horizontalAlignment="center" style="height:200" src="{{article.visual.url}}" stretch="center"/>
+        <Label style="font-size:30;font-weight:bold;margin: 5 5 5 5" text="{{article.title}}" textWrap="true"/>
+        <Label text="{{article.author}}" style="margin: 5 5 5 5" />
+        <Image horizontalAlignment="center" src="{{article.visual.url}}" stretch="aspectFill" style="height:150"/>
         <!-- <Label text="{{article.summary.content}}" textWrap="true" style="margin:5 5 5 5" /> -->
         <HtmlView html="{{ article.summary.content }}" style="margin:5 5 10 5"/>
 
       </StackLayout>
     </ScrollView>
-    <!-- <WebView url="{{url}}" row="0" visible="{{showWebView}}"></WebView> -->
-    <Label horizontalAlignment="center" row="1" style="font-size:14;color:#7986CB;" tap="{{readArticle}}" text="Read Full Article" textWrap="true"/>
+    <GridLayout columns="*,auto,*" row="1" stlye="padding:5 5 5 5">
+      <Label col="0" horizontalAlignment="left" text="Previous" tap="previous"/>
+      <Label col="1" horizontalAlignment="center" style="font-size:14;color:#7986CB;" tap="{{readArticle}}" text="Read Full Article" textWrap="true"/>
+      <Label col="2" horizontalAlignment="right" text="Next" tap="next"/>
+    </GridLayout>
+
   </GridLayout>
 </Page>
